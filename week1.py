@@ -71,7 +71,55 @@ def print_format(result_list):
         
         
 print(print_format(test()))
-####################################################################################################
-
 
 ####################################################################################################
+'''
+4. 编写一个程序，让用户输入苹果个数和单价，然后计算出价格总额。
+'''
+while True:
+    try:
+        count = int(input("Enter count: "))
+        price = int(input("Enter price for each: "))
+        Pay = count * price
+        print("The price is: ", Pay)
+        break
+    except ValueError:
+        print('Error, please enter a numeric. ')
+####################################################################################################
+'''
+寻找第6个默尼森数
+
+经典程序设计问题：找第n个默尼森数。P是素数且M也是素数，并且满足等式M=2**P-1，则称M为默尼森数。例如，P=5，M=2**P-1=31，5和31都是素数，因此31是默尼森数。
+'''
+import math
+
+def isPrime(num):
+    for i in range(2, int(math.sqrt(num)+1)):
+        if num%i == 0:
+            return False
+    return True
+    
+    
+def isMonisen(p):
+    if isPrime(p) == True and isPrime(2**p-1) == True:
+        return True
+    return False
+
+
+def getMonisen(n):
+    i = 0
+    start = 2
+    while i <= n:
+        while True:
+            if isMonisen(start) == True:
+                print('i is: {0:d}'.format(i))
+                print('start is: {0:d}'.format(start))
+                start += 1
+                i += 1
+            else:
+                start += 1
+                break
+    return 2**start-1
+
+
+print(getMonisen(6))
