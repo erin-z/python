@@ -109,7 +109,7 @@ def isMonisen(p):
 def getMonisen(n):
     i = 0
     start = 2
-    while i <= n:
+    while i < n:
         while True:
             if isMonisen(start) == True:
                 print('i is: {0:d}'.format(i))
