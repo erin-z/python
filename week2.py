@@ -2,7 +2,7 @@
 1.定义函数countchar()按字母表顺序统计字符串中26个字母出现的次数（不区分大小写）。例如字符串“Hope is a good thing.”的统计结果为：
 [1, 0, 0, 1, 1, 0, 2, 2, 2, 0, 0, 0, 0, 1, 3, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0]
 '''
-#example:
+#answer:
 def countchar(s):
     lst = [0] * 26
     for i in range(len(s)):
@@ -15,7 +15,7 @@ if __name__ == "__main__":
     s = s.lower()
     countchar(s)
   
-#===========================================================================================  
+#------------------------------------------------------------------------------------------------   
 import string
 def createDict():
     newDict = {}
@@ -48,7 +48,7 @@ if __name__ == "__main__":
 
 4 Mocha
 '''
-#example:
+#answer:
 def clean_list(lst):
     cleaned_list = []
     for item in lst:
@@ -63,7 +63,7 @@ if __name__ == "__main__":
     cleaned_list = clean_list(coffee_list)
     for k,v in zip(range(1, len(cleaned_list)+1), cleaned_list):
         print(k, v)
-#===========================================================================================  
+#------------------------------------------------------------------------------------------------ 
 
 import re
 
@@ -110,3 +110,56 @@ The answer is blowing in the wind
 
 (5) 在屏幕上打印文件内容
 '''
+#answser:
+def insert_line(lines):
+    lines.insert(0, "Blowin' in the wind\n")
+    lines.insert(1, "Bob Dylan\n")
+    lines.append("1962 by Warner Bros. Inc.")
+    return ''.join(lines)
+
+with open('Blowing in the wind.txt', 'r+') as f:
+    lines = f.readlines()
+    string = insert_line(lines)
+    print(string)
+    f.seek(0)
+    f.write(string)
+    
+#------------------------------------------------------------------------------------------------ 
+import os
+
+def write_file(file, sentences):
+    with open (file, 'w+') as f:
+        f.write(sentences)
+
+def insert_file(i, text_list, text):
+    text_list.insert(i, text)
+    return text_list    
+
+if __name__ == '__main__':
+    os.chdir('/Users/Erin/Desktop')
+    location = os.getcwd()
+    sentences = '''
+How many roads must a man walk down
+
+Before they call him a man
+
+How many seas must a white dove sail
+
+Before she sleeps in the sand
+
+How many times must the cannon balls fly
+
+Before they're forever banned
+
+The answer my friend is blowing in the wind
+
+The answer is blowing in the wind
+            '''
+    write_file(location+'/Blowing in the wind.txt', sentences)
+    with open(location+'/Blowing in the wind.txt', 'r+') as f:
+        text_list = f.readlines()
+        text_list = insert_file(0, text_list, 'Blowin’ in the wind\n')
+        text_list = insert_file(1, text_list, 'Bob Dylan\n')
+        text_list.append('1962 by Warner Bros. Inc.')
+    write_file(location+'/Blowing in the wind.txt', ''.join(text_list))   
+    print(''.join(text_list))
