@@ -155,11 +155,6 @@ if __name__ == "__main__":
 18
 19
 20
-# -*- coding: utf-8 -*-
-"""
-List processing
-@author: Dazhuang
-"""
 def clean_list(lst):
     cleaned_list = []
     for item in lst:
@@ -173,6 +168,7 @@ if __name__ == "__main__":
     cleaned_list = clean_list(coffee_list)
     for k,v in zip(range(1, len(cleaned_list)+1), cleaned_list):
         print(k, v)
+  
 3. 请完成以下文件综合编程迷你项目（提示：可以利用list的insert函数）。
 
 (1) 创建一个文件Blowing in the wind.txt，其内容是：
