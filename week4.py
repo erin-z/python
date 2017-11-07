@@ -25,5 +25,17 @@ for i in range(len(quotes)):
     y = date.strftime(x,'%Y-%m-%d')
     list1.append(y)
 quotesdf_ori = pd.DataFrame(quotes, index = list1)
-quotesdf = quotesdf_ori.drop(['date'], axis = 1)
-print(quotesdf)
+#quotesdf = quotesdf_ori.drop(['date'], axis = 1)
+#print(quotesdf)
+
+list1 = []
+tmpdf = quotesdf_ori['2016-07-01':'2016-12-31']
+for i in range(len(tmpdf)):
+    list1.append(int(tmpdf.index[i][5:7]))
+tmpdf['month'] = list1
+
+sortedf = tmpdf.sort_values('close')
+#print(pd.concat([sortedf[:5], sortedf[len(tmpdf)-5:]]))
+
+#print(tmpdf)
+print(tmpdf.groupby('month')['volume'].sum())
