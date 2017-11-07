@@ -1,3 +1,32 @@
+import pandas as pd
+import requests
+import re
+
+def retrive_dji_list():
+    r = requests.get('http://money.cnn.com/data/dow30/')
+    search_pattern = re.compile('class="wsod_symbol">(.*?)<\/a>.*?<span.*?">(.*?)<\/span>.*?\n.*?class="wsod_stream">(.*?)<\/span>')    
+    dji_list_in_text = re.findall(search_pattern, r.text)
+    dji_list = []
+    return dji_list_in_text
+
+djidf = pd.DataFrame(retrive_dji_list())
+aSer = djidf[2]
+aSer = pd.to_numeric(aSer, errors='coerce')
+djidf[2] = aSer
+djidf.columns = ['code', 'name', 'lattrade']
+djidf.index = range(1, len(djidf)+1)
+print(djidf)
+
+##########################################################################################
+import pandas as pd
+import numpy as np
+
+dates = pd.date_range('20170520', periods=7)
+datesdf = pd.DataFrame(np.random.randn(7, 3), index=dates, columns=['A','B','C'])
+datesdf
+
+##########################################################################################
+
 import requests
 import re
 import json
